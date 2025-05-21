@@ -1,8 +1,11 @@
+import NewProjBtn from '@/components/new-project'
 import React from 'react'
 
 const Page = () => {
   return (
-    <div>DashBoard Page</div>
+    <div>
+        <NewProjBtn />
+    </div>
   )
 }
 
