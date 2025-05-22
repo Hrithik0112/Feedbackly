@@ -3,6 +3,7 @@ import { eq } from "drizzle-orm";
 import { projects as dbProjects } from "@/db/schema";
 import Link from "next/link";
 import { Globe, ChevronLeft, Code } from 'lucide-react';
+import Table from "@/components/table";
 
 
 const page = async ({ params }: {
@@ -14,6 +15,9 @@ const page = async ({ params }: {
 
   const projects = await db.query.projects.findMany({
     where: (eq(dbProjects.id, parseInt(params.projectId))),
+    with: {
+      feedbacks: true,
+    },
   });
 
   const project = projects[0];
@@ -35,6 +39,7 @@ const page = async ({ params }: {
         </div>
       </div>
       <div>
+         <Table data={project.feedbacks} />
       </div>
     </div>
   )
