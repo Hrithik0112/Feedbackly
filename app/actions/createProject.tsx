@@ -12,6 +12,10 @@ export async function createProject(formData: FormData) {
 
       console.log(userId)
 
+        if (!userId) {
+            return null
+        }
+
       const project = {
         name: formData.get('name') as string,
         description: formData.get('description') as string,
