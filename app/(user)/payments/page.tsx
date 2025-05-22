@@ -24,7 +24,7 @@ const page = async () => {
       <p className="mb-2 text-lg">
         Your current plan is: {plan}
       </p>
-      <ManageSubscription />
+      <ManageSubscription  />
     </div>
   )
 };
