@@ -18,6 +18,7 @@ import {
 
 import { InferSelectModel } from "drizzle-orm";
 import { feedbacks, projects } from "@/db/schema";
+import Ratings from './ratings';
 
 type Feedback = InferSelectModel<typeof feedbacks>;
 
@@ -39,13 +40,13 @@ function Table(props: { data: Feedback[] }) {
         header: () => <span>Email</span>,
         footer: props => props.column.id,
       },
-    //   {
-    //     accessorFn: row => row.rating,
-    //     id: 'rating',
-    //     cell: info => info.getValue() === null ? <span>N/A</span> : <Ratings rating={info.getValue() as number} count={5} />,
-    //     header: () => <span>Rating</span>,
-    //     footer: props => props.column.id,
-    //   },
+      {
+        accessorFn: row => row.rating,
+        id: 'rating',
+        cell: info => info.getValue() === null ? <span>N/A</span> : <Ratings rating={info.getValue() as number} count={5} />,
+        header: () => <span>Rating</span>,
+        footer: props => props.column.id,
+      },
       {
         accessorKey: 'message',
         header: () => 'Message',
