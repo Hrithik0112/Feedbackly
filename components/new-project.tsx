@@ -19,7 +19,7 @@ const NewProjBtn = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="brand" className="rounded-full ">
+        <Button className="rounded-full ">
           <Plus className="w-4 h-4" />
             <span>New Project</span>
         </Button>

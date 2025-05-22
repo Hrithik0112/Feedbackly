@@ -1,11 +1,12 @@
 import { monthlyPlanId, yearlyPlanId } from "@/lib/payment";
 import SubscribeBtn from "../subscribe-btn";
 
-const page = ({ searchParams }: {
+export default async function Page ({ searchParams }: {
   searchParams: {
     plan: string
   }
-}) => {
+})  {
+  console
   const { plan } = searchParams;
 
   const planId = plan === "monthly" ? monthlyPlanId : yearlyPlanId;
@@ -20,4 +21,3 @@ const page = ({ searchParams }: {
   )
 }
 
-export default page;

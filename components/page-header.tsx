@@ -19,10 +19,10 @@ const PageHeader = () => {
           <div>
             <SignedOut>
               <SignInButton>
-                <Button variant="brand" >Sign In</Button>
+                <Button >Sign In</Button>
               </SignInButton>
               <SignUpButton>
-                <Button variant="brand" className='ml-2'>Sign Up</Button>
+                <Button className='ml-2'>Sign Up</Button>
               </SignUpButton>
             </SignedOut>
             <SignedIn>

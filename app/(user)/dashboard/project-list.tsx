@@ -3,14 +3,15 @@ import { projects } from "@/db/schema";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Lock } from "lucide-react";
 import SubscribeBtn from "../payments/subscribe-btn";
-import { monthlyPlanId } from "@/lib/payment";
+import { Lock } from "lucide-react";
+import { maxFreeProjects, monthlyPlanId } from "@/lib/payment";
 
 type Project = InferSelectModel<typeof projects>;
 
 type Props = {
   projects: Project[];
+  subscribed: boolean | null | undefined;
 };
 
 const ProjectsList = (props: Props) => {
@@ -33,9 +34,8 @@ const ProjectsList = (props: Props) => {
             </Card>
           </li>
         ))}
-        {/* {props.subscribed !== true && props.projects?.length > maxFreeProjects ?
-           : null} */}
-           <Card className="max-w-[350px] flex flex-col h-full bg-gray-300">
+        {props.subscribed !== true && props.projects?.length > maxFreeProjects ?
+          <Card className="max-w-[350px] flex flex-col h-full bg-gray-300">
             <CardHeader className="flex-1">
               <CardTitle className="flex flex-row text-sm md:text-lg items-center">
                 <Lock className="h-4 w-4 md:h-8 md:w-8 mr-2" />
@@ -45,7 +45,7 @@ const ProjectsList = (props: Props) => {
             <div className="w-fit mx-auto mb-4">
               <SubscribeBtn price={monthlyPlanId} />
             </div>
-          </Card>
+          </Card> : null}
       </ul>
     </div>
   )

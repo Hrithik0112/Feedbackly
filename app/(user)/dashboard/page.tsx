@@ -5,6 +5,8 @@ import React from 'react'
 import { auth, currentUser } from '@clerk/nextjs/server'
 import { eq } from 'drizzle-orm'
 import ProjectsList from './project-list'
+import { getSubscription } from '@/app/actions/userSubscriptions'
+import { maxFreeProjects } from '@/lib/payment'
 
 const  Page = async() => {
 
@@ -16,15 +18,15 @@ if (!userId) {
     return null
 }
 
-console.log(userId);
 const userProjects = await db.select().from(projects).where(eq(projects.userId, userId));
-console.log(userProjects);
+
+
+ const subscribed = await getSubscription({ userId });
 return (
     <div>
-        <NewProjBtn />
-        <h1 className="text-2xl font-bold">Your Projects</h1>
-        <ProjectsList projects={userProjects} />
-    </div>
+      <div className="flex items-center justify-center gap-3">
+        <h1 className="text-3xl font-bold text-center my-4">Your Projects</h1>{subscribed !== true && userProjects.length > maxFreeProjects ? null : <NewProjBtn />}
+      </div><ProjectsList projects={userProjects} subscribed={subscribed} /></div>
   )
 }
 

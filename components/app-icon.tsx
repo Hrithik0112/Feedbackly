@@ -4,10 +4,8 @@ import { MessageCircle } from 'lucide-react'
 const AppIcon = () => {
   return (
     <div className='flex items-center gap-2'>
-        <MessageCircle className='text-fuchsia-500' />
-        <h1 className='text-2xl font-semibold text-fuchsia-500 font-mono'>
-            Fex
-            <span className='font-normal'>xa</span></h1>
+        <MessageCircle  />
+        <p className='text-2xl font-mono font-bold bg-clip-text bg-gradient-to-r text-transparent from-blue-950 via-blue-400 to-purple-800 text-shadow-blue-400 '>Feedbackly</p>
     </div>
   )
 }

@@ -1,22 +1,14 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+import LandingPage from "./landing-page";
+import Footer from "./landing-page/footer";
 
 export default function Home() {
 
-  const router = useRouter();
-  const handleClick = () => {
-    router.push("/(user)/dashboard");
-  }
+
   return (
-    <div className="min-h-screen w-full bg-gradient-to-b from-white to-fuchsia-300">
-        <div className="flex flex-col justify-center items-center min-h-dvh ">
-          <h1 className="font-mono text-5xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-white via-fuchsia-400 to-purple-600">Welcome to the dark side</h1>
-        <Button onClick={handleClick}  variant="brand" className="mt-4">  
-          Get Started
-        </Button>
-        </div>
-    </div>
+     <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <LandingPage />
+      <Footer />
+    </main>
   );
 }
