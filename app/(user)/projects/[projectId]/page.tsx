@@ -7,14 +7,17 @@ import Table from "@/components/table";
 
 
 const page = async ({ params }: {
-  params: {
+  params: Promise<{
     projectId: string
-  }
+  }>
 }) => {
-  if (!params.projectId) return (<div>Invalid Project ID</div>);
+
+  const resolvedParams = await params;
+  const projectId = resolvedParams.projectId;
+  if (!projectId) return (<div>Invalid Project ID</div>);
 
   const projects = await db.query.projects.findMany({
-    where: (eq(dbProjects.id, parseInt(params.projectId))),
+    where: (eq(dbProjects.id, parseInt(projectId))),
     with: {
       feedbacks: true,
     },
@@ -34,7 +37,7 @@ const page = async ({ params }: {
         </div>
         <div className="flex flex-col">
           {project.url ? <Link href={project.url} className="underline text-indigo-700 flex items-center"><Globe className="h-5 w-5 mr-1" /><span className="text-lg">Visit site</span></Link> : null}
-          <Link href={`/projects/${params.projectId}/instructions`} className="underline text-indigo-700 flex items-center mt-2">
+          <Link href={`/projects/${projectId}/instructions`} className="underline text-indigo-700 flex items-center mt-2">
             <Code className="h-5 w-5 mr-1" /><span className="text-lg">Embed Code</span></Link>
         </div>
       </div>

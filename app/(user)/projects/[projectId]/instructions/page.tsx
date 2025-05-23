@@ -2,12 +2,16 @@ import CopyBtn from "@/components/copy-btn";
 import { ArrowLeft, Info } from "lucide-react";
 import Link from "next/link";
 
-const Page = ({ params }: {
-  params: {
+const Page = async ({ params }: {
+  params: Promise<{
     projectId: string
-  }
+  }>
 }) => {
-  if (!params.projectId) return (<div>Invalid Project ID</div>);
+  // Await the entire params object first
+  const resolvedParams = await params;
+  const projectId = resolvedParams.projectId;
+  
+  if (!projectId) return (<div>Invalid Project ID</div>);
   if (!process.env.WIDGET_URL) return (<div>Missing WIDGET_URL</div>);
 
   return (
@@ -29,11 +33,11 @@ const Page = ({ params }: {
           <h2 className="text-lg font-semibold mb-2">HTML / JavaScript</h2>
           <div className="bg-blue-950 p-6 rounded-md relative">
             <code className="text-white">
-              {`<my-widget project-id="${params.projectId}"></my-widget>`}
+              {`<my-widget project-id="${projectId}"></my-widget>`}
               <br />
               {`<script src="${process.env.WIDGET_URL}/widget.umd.js"></script>`}
             </code>
-            <CopyBtn text={`<my-widget project-id="${params.projectId}"></my-widget>\n<script src="${process.env.WIDGET_URL}/widget.umd.js"></script>`} />
+            <CopyBtn text={`<my-widget project-id="${projectId}"></my-widget>\n<script src="${process.env.WIDGET_URL}/widget.umd.js"></script>`} />
           </div>
         </div>
 
@@ -46,9 +50,9 @@ const Page = ({ params }: {
               <br />
               {`<script src="${process.env.WIDGET_URL}/widget.umd.js"></script>`}
               <br />
-              {`<my-widget project-id="${params.projectId}"></my-widget>`}
+              {`<my-widget project-id="${projectId}"></my-widget>`}
             </code>
-            <CopyBtn text={`// Add this in your index.html or main entry file\n<script src="${process.env.WIDGET_URL}/widget.umd.js"></script>\n\n// Use in any component\n<my-widget project-id="${params.projectId}"></my-widget>`} />
+            <CopyBtn text={`// Add this in your index.html or main entry file\n<script src="${process.env.WIDGET_URL}/widget.umd.js"></script>\n\n// Use in any component\n<my-widget project-id="${projectId}"></my-widget>`} />
           </div>
         </div>
 
