@@ -22,13 +22,13 @@ const HeaderMenu = () => {
   return (
     <DropdownMenu open={open} onOpenChange={toggleMenu}>
       <DropdownMenuTrigger asChild>
-        <Button onClick={toggleMenu} className="mr-4" variant="secondary">
+        <Button onClick={toggleMenu} className="mr-4" variant="brand">
           {
             open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />
           }
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
+      <DropdownMenuContent className="w-56 bg-gradient-to-b from-white to-gray-400">
         <DropdownMenuItem asChild>
           <Link href="/dashboard" className="flex">
             <Folder className="mr-2 h-4 w-4" /><span>Projects</span>

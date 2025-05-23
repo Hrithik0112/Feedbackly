@@ -1,13 +1,19 @@
 import PricingSection from './pricing-section';
-import Hero from './hero';
 import FeaturesSection from './features-section';
+import Hero from './hero-new';
+import Features from './feature-new';
+import HowItWorks from './howitworks-new';
+import Pricing from './pricing-new';
 
 const LandingPage = () => {
   return (
     <div>
       <Hero />
-      <FeaturesSection />
-      <PricingSection />
+      <Features/>
+      <HowItWorks />
+      <Pricing />
+      {/* <FeaturesSection />
+      <PricingSection /> */}
     </div>
   );
 }
