@@ -1,18 +1,18 @@
+"use client";
 import { monthlyPlanId, yearlyPlanId } from "@/lib/payment";
 import SubscribeBtn from "../subscribe-btn";
 import { AlertCircle } from "lucide-react";
 
-// Define the proper type for the page props
-type PageProps = {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-};
 
-export default async function Page({ searchParams }: PageProps) {
-  // Await the searchParams since they're now a Promise in newer Next.js versions
-  const resolvedSearchParams = await searchParams;
-  const plan = resolvedSearchParams.plan as string;
 
-  const planId = plan === "monthly" ? monthlyPlanId : yearlyPlanId;
+
+export default  function Page() {
+
+  const params = new URLSearchParams(window.location.search);
+  const planParam = params.get("plan");
+
+
+  const planId = planParam === "monthly" ? monthlyPlanId : yearlyPlanId;
 
   return (
     <div className="flex flex-col gap-4">
